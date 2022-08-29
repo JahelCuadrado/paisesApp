@@ -18,8 +18,8 @@ export class PorPaisComponent{
 
   constructor( private paisService : PaisService) { }
 
-  buscar(){
-      this.paisService.bucarPais(this.termino).subscribe({
+  buscar(termino:string){
+      this.paisService.bucarPais(termino).subscribe({
 
         next: (paises) => {
           this.paises = paises;
