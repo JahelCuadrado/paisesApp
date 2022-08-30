@@ -15,6 +15,7 @@ export class PorPaisComponent{
   mostrarTabla   : boolean   = false
   paises         : Country[] = []
 
+  placeholder : string = "Buscar país..."
 
   constructor( private paisService : PaisService) { }
 
@@ -38,4 +39,12 @@ export class PorPaisComponent{
           this.error = true
           this.mostrarTabla = false
         }})}
+
+
+  sugerencias( termino : string ){
+    this.error = false
+    //TODO: Crear sugerencias
+  }
+
+
 }

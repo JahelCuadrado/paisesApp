@@ -12,7 +12,7 @@
       <tr>
         <td> {{ i+1 }} </td>
         <td> <img class="small-flag" [src]="pais.flags.png" alt="Bandera de pais.name.common"> </td>
-        <td> {{ pais.name.common }} </td>
+        <td> {{ pais.capital }}<span *ngIf="pais.capital!=null">,</span>  {{ pais.name.common }} </td>
         <td> {{ pais.population | number}} </td>
         <td> <a [routerLink]="['/pais', pais.cca3]" >  Ver...  </a></td>
       </tr>

@@ -17,6 +17,11 @@ export class PaisService {
       return this.http.get<Country[]>(url)
   }
 
+  bucarCapital( query : string ) : Observable<Country[]> {
+    const url = `${this.apiUrl}/capital/${query}`
+    return this.http.get<Country[]>(url)
+}
+
 
 
 

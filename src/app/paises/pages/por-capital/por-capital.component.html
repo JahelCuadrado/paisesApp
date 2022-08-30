@@ -1,1 +1,18 @@
-<p>por-capital works!</p>
+<h2>Por Capital</h2>
+<hr>
+<div class="row">
+    <div class="col">
+        <app-pais-input
+        (onEnter)="buscar($event)"
+        [placeholder]="placeholder"
+        ></app-pais-input>
+    </div>
+</div>
+<div *ngIf="error" class="alert alert-danger">
+    error
+</div>
+<div class="row">
+    <div class="col">
+        <app-pais-tabla [mostrarTabla]="mostrarTabla" [paises]="capitales"></app-pais-tabla>
+    </div>
+</div>
