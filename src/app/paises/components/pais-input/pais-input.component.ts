@@ -11,13 +11,15 @@ export class PaisInputComponent implements OnInit{
   @Input()
   placeholder : string = ""
 
-  //TODO: añadir a los apuntes el dobouncetime
+  //añadir a los apuntes el dobouncetime
   ngOnInit(): void {
-    this.debouncer
+
+    this.debouncer  //Hacemos que emita el valor con un retraso de 100 milisegundos
     .pipe(debounceTime(100))
     .subscribe(valor => {
       this.onDebounce.emit( valor )
     })
+
   }
 
   @Output()
@@ -35,7 +37,7 @@ export class PaisInputComponent implements OnInit{
   }
 
   teclaPresionada(event : any){
-    this.debouncer.next( event )
+    this.debouncer.next( event )  //Mandamos el valor a todo los observadores suscritos
   }
 
 
