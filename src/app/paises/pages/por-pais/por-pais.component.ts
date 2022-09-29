@@ -6,44 +6,64 @@ import { Country } from '../../interfaces/pais.interface';
   selector: 'app-por-pais',
   templateUrl: './por-pais.component.html',
   styles: [
+    `
+    li{
+      cursor:pointer;
+    }
+    `
   ]
 })
 export class PorPaisComponent{
 
-  termino        : string    = ""
-  error          : boolean   = false
-  mostrarTabla   : boolean   = false
-  paises         : Country[] = []
-
-  placeholder : string = "Buscar país..."
+  termino            : string    = ""
+  error              : boolean   = false
+  mostrarTabla       : boolean   = false
+  paises             : Country[] = []
+  paisesSugeridos    : Country[] = []
+  mostrarSugerencias : boolean   = false
+  placeholder        : string    = "Buscar país..."
 
   constructor( private paisService : PaisService) { }
 
   buscar(termino:string){
+    console.log("EL TERMINO: ", termino);
+
       this.paisService.bucarPais(termino).subscribe({
 
         next: (paises) => {
-          this.paises = paises;
+          this.paises       = paises;
+          this.error        = false
+          this.mostrarTabla = true
 
           console.log(paises);
-
-          this.error = false
-          this.mostrarTabla = true
         },
 
         error: (error) => {
+          this.error        = true
+          this.mostrarTabla = false
 
           console.log("Error");
           console.info(error)
-
-          this.error = true
-          this.mostrarTabla = false
         }})}
 
 
   sugerencias( termino : string ){
-    this.error = false
-    //TODO: Crear sugerencias
+
+    this.error              = false
+    this.termino            = termino
+    this.mostrarSugerencias = true
+
+    this.paisService.bucarPais(termino)
+    .subscribe({
+      next  : (paises) => this.paisesSugeridos = paises.splice(0,3),
+      error : (error)  => this.paisesSugeridos = []
+    })
+
+  }
+
+  buscarTermino(termino : string){
+      this.buscar(termino);
+      this.mostrarSugerencias = false;
   }
 
 

@@ -8,36 +8,29 @@ import { debounceTime, Subject } from 'rxjs';
 })
 export class PaisInputComponent implements OnInit{
 
-  @Input()
-  placeholder : string = ""
+  @Input()  placeholder : string = ""
+  @Output() onEnter     : EventEmitter<string> = new EventEmitter();
+  @Output() onDebounce  : EventEmitter<string> = new EventEmitter();
+
+  debouncer             : Subject<string> = new Subject();
+  termino!              : string;
 
   //añadir a los apuntes el dobouncetime
   ngOnInit(): void {
-
     this.debouncer  //Hacemos que emita el valor con un retraso de 100 milisegundos
-    .pipe(debounceTime(100))
+    .pipe(debounceTime(300))
     .subscribe(valor => {
       this.onDebounce.emit( valor )
     })
 
   }
 
-  @Output()
-  onEnter : EventEmitter<string> = new EventEmitter();
-
-  @Output()
-  onDebounce : EventEmitter<string> = new EventEmitter();
-
-  debouncer : Subject<string> = new Subject();
-
-  termino! : string;
-
   buscar(){
     this.onEnter.emit(this.termino);
   }
 
   teclaPresionada(event : any){
-    this.debouncer.next( event )  //Mandamos el valor a todo los observadores suscritos
+    this.debouncer.next(event)  //Mandamos el valor a todo los observadores suscritos
   }
 
 

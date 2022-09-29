@@ -27,6 +27,10 @@ export class PaisService {
     return this.http.get<Country[]>(url)
   }
 
+  bucarPaisesPorContinente( continente : string ) : Observable<Country[]> {
+    const url = `${this.apiUrl}/region/${continente}`
+    return this.http.get<Country[]>(url)
+  }
 
 
 
