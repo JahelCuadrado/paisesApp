@@ -12,6 +12,7 @@ export class PaisService {
 
   constructor( private http : HttpClient) { }
 
+
   bucarPais( query : string ) : Observable<Country[]> {
       const url = `${this.apiUrl}/name/${query}`
       return this.http.get<Country[]>(url)

@@ -16,8 +16,8 @@ export class PorCapitalComponent{
     private paisService : PaisService
   ){}
 
-  error          : boolean   = false;
-  mostrarTabla   : boolean   = false;
+  error        : boolean = false;
+  mostrarTabla : boolean = false;
 
   capitales : Country[] = [];
 

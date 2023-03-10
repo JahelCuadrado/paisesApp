@@ -30,7 +30,7 @@ export class PaisInputComponent implements OnInit{
   }
 
   teclaPresionada(event : any){
-    this.debouncer.next(event)  //Mandamos el valor a todo los observadores suscritos
+    this.debouncer.next(event.target.value)  //Mandamos el valor a todo los observadores suscritos
   }
 
 
